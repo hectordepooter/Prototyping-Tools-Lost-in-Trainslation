@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lost in Tra(i)nslation — Week 9/12</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-clifford: #C42929;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+  <!-- Navbar -->
+  <header class="bg-[#00469B] text-white shadow">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+      <a href="index.html" class="text-2xl font-bold tracking-tight" style="color:#FFF200;">
+        Lost in Tra(i)nslation
+      </a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 py-14 space-y-12">
+
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+      <h2 class="text-4xl font-extrabold mb-4 text-clifford tracking-tight">Week 9/12</h2>
+      <div class="h-px bg-slate-200 mb-6"></div>
+
+      <h3 class="text-2xl font-semibold mb-3">Van schermen naar mobiele UI</h3>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        In week 9 tot en met 12 verschoof de focus naar het maken van mobiele varianten van de drie belangrijkste schermen: het trein-overzichtsscherm, het perronscherm en het wagonscherm. Het doel was om dezelfde informatie logisch, snel leesbaar en compact op een telefoon weer te geven, zonder dat er belangrijke details verloren gingen.
+      </p>
+
+      <!-- Image under text -->
+      <div class="mt-6 mb-10">
+        <img
+          src="images/week9-mobile-ui.png"
+          alt="Mobiele UI varianten van de drie schermen"
+          data-zoom
+          class="rounded-2xl shadow-lg w-full max-w-3xl mx-auto cursor-zoom-in hover:scale-105 transition-transform duration-200 object-contain"
+        />
+        <p class="text-sm text-slate-500 mt-3 text-center">
+          Eerste mobiele UI-versies gebaseerd op de grote treinschermen.
+        </p>
+      </div>
+
+      <h3 class="text-2xl font-semibold mb-3">Begin van de website</h3>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        In dezelfde periode begon ik ook aan deze website. Eerst leerde ik de basis via een YouTube-tutorial. Daarna schakelde ik over naar TailwindCSS en gebruikte ik ChatGPT om sneller te experimenteren, componenten te verbeteren en het geheel consistenter te maken.
+      </p>
+
+      <!-- YouTube embed -->
+      <div class="rounded-2xl overflow-hidden shadow-lg mb-10 aspect-video">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/G3e-cpL7ofc?si=aBpMbKwlFMrlGeYh"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+          class="w-full h-full"
+        ></iframe>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#00469B] text-white py-14 mt-10">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-10">
+
+      <div>
+        <h3 class="text-xl font-bold mb-2">Lost in Tra(i)nslation</h3>
+        <p class="text-sm text-blue-100">
+          A project exploring information design in train stations.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-3">GitHub</h4>
+        <a
+          href="https://github.com/hectordepooter/Prototyping-Tools-Lost-in-Trainslation/upload/main"
+          target="_blank"
+          class="underline hover:opacity-90 flex items-center gap-2"
+        >
+          View GitHub →
+        </a>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-3">Get in touch</h4>
+        <form>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            class="w-full rounded-xl px-4 py-2 text-slate-900 bg-white border border-slate-300 mb-3"
+          />
+          <button
+            type="submit"
+            class="bg-clifford px-4 py-2 rounded-xl font-semibold hover:opacity-90"
+          >
+            Contact me
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 mt-10 text-sm text-blue-100 flex justify-between flex-wrap gap-2">
+      <p>© 2026 Lost in Tra(i)nslation</p>
+      <p>Designed with TailwindCSS</p>
+    </div>
+  </footer>
+
+  <!-- Fullscreen overlay -->
+  <div id="imageOverlay" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50">
+    <div class="max-w-6xl mx-auto p-4 flex flex-col gap-4">
+      <img
+        id="overlayImg"
+        class="rounded-2xl shadow-xl w-full max-h-[85vh] mx-auto object-contain transform transition duration-300 ease-in-out"
+      />
+      <p id="overlayCaption" class="text-center text-white/90 text-sm md:text-base"></p>
+      <p class="text-center text-white/60 text-xs">
+        Klik of druk op ESC om te sluiten — swipe omlaag op mobiel
+      </p>
+    </div>
+  </div>
+
+  <!-- Zoom script -->
+  <script>
+    const overlay = document.getElementById('imageOverlay');
+    const overlayImg = document.getElementById('overlayImg');
+    const overlayCaption = document.getElementById('overlayCaption');
+
+    let startY = null;
+
+    function openOverlay(img) {
+      overlayImg.src = img.src;
+      overlayCaption.textContent = img.alt || '';
+      overlay.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeOverlay() {
+      overlay.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    document.querySelectorAll('[data-zoom]').forEach(img => {
+      img.addEventListener('click', () => openOverlay(img));
+    });
+
+    overlay.addEventListener('click', closeOverlay);
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeOverlay();
+    });
+
+    overlay.addEventListener('touchstart', e => {
+      startY = e.touches[0].clientY;
+    });
+
+    overlay.addEventListener('touchmove', e => {
+      if (!startY) return;
+      const currentY = e.touches[0].clientY;
+      if (currentY - startY > 80) {
+        closeOverlay();
+        startY = null;
+      }
+    });
+  </script>
+
+</body>
+</html>
